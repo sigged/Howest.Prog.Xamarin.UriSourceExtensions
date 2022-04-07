@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:SampleApp.ViewModels"
+             xmlns:extensions="clr-namespace:Howest.Prog.InsecureImageExtension;assembly=Howest.Prog.InsecureImageExtension"
+             Title="Public images"
+             x:Class="SampleApp.PublicPage">
+    <ContentPage.BindingContext>
+        <viewmodels:PublicViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <CollectionView ItemsSource="{Binding Images}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout>
+
+                        <!--<Image Source="{Binding Url }">
+                            <Image.Behaviors>
+                                <extensions:AllowInvalidCertificateBehavior IgnoreCertificateErrors="True" />
+                            </Image.Behaviors>
+                        </Image>-->
+                        <Image Source="https://192.168.1.152:5001/public/pepperoni.jpg">
+                            <Image.Behaviors>
+                                <extensions:AllowInvalidCertificateBehavior IgnoreCertificateErrors="True" />
+                            </Image.Behaviors>
+                        </Image>
+                        <Label Text="{Binding Description}"></Label>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</ContentPage>
