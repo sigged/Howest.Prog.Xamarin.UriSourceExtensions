@@ -9,17 +9,23 @@
         <viewmodels:PublicViewModel />
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <CollectionView ItemsSource="{Binding Images}">
+        <CollectionView ItemsSource="{Binding Images}" Margin="10">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <StackLayout>
-                        <Image Source="{Binding Url }">
-                            <Image.Behaviors>
-                                <extensions:TlsSourceBehavior IgnoreCertificateErrors="True" />
-                            </Image.Behaviors>
-                        </Image>
-                        <Label Text="{Binding Description}"></Label>
-                    </StackLayout>
+                    <ContentView>
+                        <Frame Margin="10" HasShadow="True" CornerRadius="10" BorderColor="Gray">
+                            <StackLayout>
+                                <Image Source="{Binding Url}">
+                                    <Image.Behaviors>
+                                        <extensions:TlsSourceBehavior IgnoreCertificateErrors="True" />
+                                    </Image.Behaviors>
+                                </Image>
+                                <Label FontSize="20" 
+                                       HorizontalTextAlignment="Center"
+                                       Text="{Binding Description}"></Label>
+                            </StackLayout>
+                        </Frame>
+                    </ContentView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

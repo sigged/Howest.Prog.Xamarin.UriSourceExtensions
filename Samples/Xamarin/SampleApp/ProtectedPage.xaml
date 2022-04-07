@@ -30,20 +30,25 @@
                 </StackLayout>
             </Frame>
             <Button Margin="10" Text="Load secure images" Command="{Binding LoadImagesCommand}"></Button>
-            <CollectionView ItemsSource="{Binding Images}">
+            <CollectionView ItemsSource="{Binding Images}" Margin="10">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
-                            <Image Source="{Binding Url}">
-                                <Image.Behaviors>
-                                    <extensions:TlsSourceBehavior 
-                                        IgnoreCertificateErrors="True"
-                                        Token="{Binding BindingContext.AuthenticationToken, Source={x:Reference Name=protectedPage}}"
-                                    />
-                                </Image.Behaviors>
-                            </Image>
-                            <Label Text="{Binding Description}"></Label>
-                        </StackLayout>
+                        <ContentView>
+                            <Frame Margin="10" HasShadow="True" CornerRadius="10" BorderColor="Gray">
+                                <StackLayout>
+                                    <Image Source="{Binding Url}">
+                                        <Image.Behaviors>
+                                            <extensions:TlsSourceBehavior 
+                                                IgnoreCertificateErrors="True"
+                                                Token="{Binding BindingContext.AuthenticationToken, Source={x:Reference Name=protectedPage}}" />
+                                        </Image.Behaviors>
+                                    </Image>
+                                    <Label FontSize="20" 
+                                       HorizontalTextAlignment="Center"
+                                       Text="{Binding Description}"></Label>
+                                </StackLayout>
+                            </Frame>
+                        </ContentView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
