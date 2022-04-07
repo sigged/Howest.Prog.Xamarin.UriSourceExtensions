@@ -4,7 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Essentials;
@@ -22,44 +25,58 @@ namespace SampleApp.ViewModels
             _client = new ApiClient();
         }
 
+        public ICommand LoadImagesCommand => new Command(async () =>
+        {
+            try
+            {
+                string token = await SecureStorage.GetAsync("token");
+                var images = await _client.GetProtectedImagesAsync(token);
+                Images = new ObservableCollection<ImageDto>(images);
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+            }
+        });
+
+        public ICommand RefreshAuthenticationState => new Command(async() =>
+        {
+            string token = await SecureStorage.GetAsync("token");
+            if(IsValidToken(token, out string userName))
+            {
+                AuthenticationToken = token;
+                UserName = userName;
+                IsAuthenticated = true;
+            }
+            else
+            {
+                AuthenticationToken = null;
+                UserName = null;
+                IsAuthenticated = false;
+            }
+        });
+
         public ICommand AuthenticateCommand => new Command(async () =>
         {
             try
             {
                 var authresult = await _client.LoginAsync();
-                IsAuthenticated = authresult.Success;
-
-                if (IsAuthenticated)
+                if (authresult.Success)
                 {
                     await SecureStorage.SetAsync("token", authresult.Token);
-                    UserName = "Jeftje";
-                    AuthenticationToken = authresult.Token;
                 }
                 else
                 {
                     SecureStorage.Remove("token");
-                    UserName = null;
-                    AuthenticationToken = null;
                 }
+
+                RefreshAuthenticationState.Execute(null);
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
             }
             
-        });
-
-        public ICommand LoadImagesCommand => new Command(async () =>
-        {
-            try {
-                string token = await SecureStorage.GetAsync("token");
-                var images = await _client.GetProtectedImagesAsync(token);
-                Images = new ObservableCollection<ImageDto>(images);
-            }
-            catch(Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
-            }
         });
 
         public bool isAuthenticated;
@@ -118,6 +135,23 @@ namespace SampleApp.ViewModels
                 images = value;
                 OnPropertyChanged();
             }
+        }
+
+        private bool IsValidToken(string token, out string userName)
+        {
+            userName = null;
+
+            if (token == null)
+                return false;
+
+            var handler = new JwtSecurityTokenHandler();
+            var securityToken = handler.ReadJwtToken(token);
+
+            userName = securityToken.Claims.FirstOrDefault(c => c.Type == "name")?.Value;
+
+            return
+                securityToken.ValidTo.ToUniversalTime() >= DateTime.UtcNow &&
+                securityToken.ValidFrom.ToUniversalTime() <= DateTime.UtcNow;
         }
     }
 }
