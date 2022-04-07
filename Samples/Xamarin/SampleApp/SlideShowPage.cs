@@ -1,4 +1,4 @@
-﻿using Howest.Prog.InsecureImageExtension;
+﻿using Howest.Prog.Xamarin.UriSourceExtensions;
 using SampleApp.Models;
 using SampleApp.Services;
 using System;

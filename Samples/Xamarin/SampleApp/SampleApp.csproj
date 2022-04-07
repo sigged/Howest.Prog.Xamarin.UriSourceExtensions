@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Howest.Prog.InsecureImageExtension\Howest.Prog.InsecureImageExtension.csproj" />
+    <ProjectReference Include="..\..\..\Howest.Prog.Xamarin.UriSourceExtensions\Howest.Prog.Xamarin.UriSourceExtensions.csproj" />
   </ItemGroup>
 
   <ItemGroup>

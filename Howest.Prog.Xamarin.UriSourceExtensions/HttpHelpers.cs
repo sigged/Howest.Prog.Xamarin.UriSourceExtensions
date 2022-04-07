@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace Howest.Prog.InsecureImageExtension
+namespace Howest.Prog.Xamarin.UriSourceExtensions
 {
     internal class HttpHelpers
     {

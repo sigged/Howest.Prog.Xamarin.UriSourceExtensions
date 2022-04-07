@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using Xamarin.Forms;
 
-namespace Howest.Prog.InsecureImageExtension
+namespace Howest.Prog.Xamarin.UriSourceExtensions
 {
     public class TlsSourceBehavior : Behavior<Image>
     {
