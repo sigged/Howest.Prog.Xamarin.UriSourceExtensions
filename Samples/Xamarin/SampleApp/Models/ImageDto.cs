@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SampleApp.Models
+﻿namespace SampleApp.Models
 {
     public class ImageDto
     {
