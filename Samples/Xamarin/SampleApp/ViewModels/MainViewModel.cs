@@ -18,5 +18,9 @@ namespace SampleApp.ViewModels
         {
             await Application.Current.MainPage.Navigation.PushAsync(new ProtectedPage());
         });
+        public ICommand LoadSlideshowPage => new Command(async () =>
+        {
+            await Application.Current.MainPage.Navigation.PushAsync(new SlideShowPage());
+        });
     }
 }
