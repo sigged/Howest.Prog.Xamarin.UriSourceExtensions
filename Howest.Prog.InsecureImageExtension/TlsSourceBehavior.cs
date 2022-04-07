@@ -6,12 +6,12 @@ using Xamarin.Forms;
 
 namespace Howest.Prog.InsecureImageExtension
 {
-    public class AllowInvalidCertificateBehavior : Behavior<Image>
+    public class TlsSourceBehavior : Behavior<Image>
     {
         protected Image attachedImage;
 
         public static readonly BindableProperty TokenProperty =
-            BindableProperty.CreateAttached(nameof(Token), typeof(string), typeof(AllowInvalidCertificateBehavior), null);
+            BindableProperty.CreateAttached(nameof(Token), typeof(string), typeof(TlsSourceBehavior), null);
 
 
         /// <summary>
@@ -34,7 +34,7 @@ namespace Howest.Prog.InsecureImageExtension
         }
 
         public static readonly BindableProperty IgnoreCertificateErrorsProperty =
-            BindableProperty.CreateAttached(nameof(IgnoreCertificateErrors), typeof(bool), typeof(AllowInvalidCertificateBehavior), null);
+            BindableProperty.CreateAttached(nameof(IgnoreCertificateErrors), typeof(bool), typeof(TlsSourceBehavior), null);
 
         /// <summary>
         /// Gets or sets a value to ignore TLS certificate errors such as self-signed, expired or untrusted certificates.
