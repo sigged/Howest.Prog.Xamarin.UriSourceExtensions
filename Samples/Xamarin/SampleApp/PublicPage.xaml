@@ -13,15 +13,9 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout>
-
-                        <!--<Image Source="{Binding Url }">
+                        <Image Source="{Binding Url }">
                             <Image.Behaviors>
-                                <extensions:AllowInvalidCertificateBehavior IgnoreCertificateErrors="True" />
-                            </Image.Behaviors>
-                        </Image>-->
-                        <Image Source="https://192.168.1.152:5001/public/pepperoni.jpg">
-                            <Image.Behaviors>
-                                <extensions:AllowInvalidCertificateBehavior IgnoreCertificateErrors="True" />
+                                <extensions:TlsSourceBehavior IgnoreCertificateErrors="True" />
                             </Image.Behaviors>
                         </Image>
                         <Label Text="{Binding Description}"></Label>

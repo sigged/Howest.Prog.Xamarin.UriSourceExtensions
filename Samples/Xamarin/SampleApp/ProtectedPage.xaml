@@ -36,27 +36,12 @@
                         <StackLayout>
                             <Image Source="{Binding Url}">
                                 <Image.Behaviors>
-                                    <extensions:AllowInvalidCertificateBehavior 
+                                    <extensions:TlsSourceBehavior 
                                         IgnoreCertificateErrors="True"
                                         Token="{Binding BindingContext.AuthenticationToken, Source={x:Reference Name=protectedPage}}"
                                     />
                                 </Image.Behaviors>
                             </Image>
-                            <!--<Image Source="{extensions:IgnoreSslUriBinding Url, 
-                                IgnoreTlsCertificateErrors=True,
-                                Token={Binding BindingContext.AuthenticationToken, Source={x:Reference Name=protectedPage }} }" 
-                            >
-                                
-                            </Image>-->
-                            <!--<Image Source="{Binding Url }">
-                                <Image.Behaviors>
-                                    <extensions:AllowInvalidCertificateBehavior 
-                                        IgnoreCertificateErrors="True"
-                                        Token="{Binding BindingContext.AuthenticationToken, Source={x:Reference Name=protectedPage}}"
-                                    />
-                                </Image.Behaviors>
-                            </Image>-->
-                            <!--<Image Source="{extensions:IgnoreSslUri 'https://192.168.1.152:5001/private/tacos.jpg', BearerToken=AuthenticationToken }" />-->
                             <Label Text="{Binding Description}"></Label>
                         </StackLayout>
                     </DataTemplate>

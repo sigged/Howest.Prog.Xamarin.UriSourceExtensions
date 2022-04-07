@@ -19,6 +19,9 @@
         <Button Text="🔒 private tacos" 
                 Command="{Binding LoadProtectedPage}"
                 Margin="10" TextColor="#5D2C00" BackgroundColor="#FFB44A" />
+        <Button Text="🗘 slide show" 
+                Command="{Binding LoadSlideshowPage}"
+                Margin="10" TextColor="#295300" BackgroundColor="#97D686"/>
     </StackLayout>
 
 </ContentPage>
