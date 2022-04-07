@@ -16,6 +16,10 @@ namespace SampleWebApi.Controllers
                 new {
                     Description = "Pepperoni pizza for everyone!",
                     Url = "/public/pepperoni.jpg"
+                },
+                new {
+                    Description = "Chicken pita for all",
+                    Url = "/public/chickenpita.jpg"
                 }
             });
         }
@@ -28,10 +32,6 @@ namespace SampleWebApi.Controllers
                 new {
                     Description = "Tacos for the authenticated",
                     Url = "/private/tacos.jpg"
-                },
-                new {
-                    Description = "Pepperoni pizza for everyone!",
-                    Url = "/public/pepperoni.jpg"
                 }
             });
         }
