@@ -11,7 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Howest.Prog.Xamarin.UriSourceExtensions" Version="0.0.1-alpha" />
+    <PackageReference Include="Howest.Prog.Xamarin.UriSourceExtensions" Version="0.0.2-alpha" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
