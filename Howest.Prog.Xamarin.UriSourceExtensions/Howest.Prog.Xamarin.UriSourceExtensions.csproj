@@ -1,8 +1,34 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <SignAssembly>False</SignAssembly>
+	<Version>0.0.1-alpha</Version>
+	<InformationalVersion>This is a prerelease package</InformationalVersion>
+	<Authors>sigged</Authors>
+	<RepositoryType>git</RepositoryType>
+	<RepositoryUrl>https://github.com/sigged/Howest.Prog.Xamarin.UriSourceExtensions</RepositoryUrl>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<PackageProjectUrl>https://github.com/sigged/Howest.Prog.Xamarin.UriSourceExtensions</PackageProjectUrl>
+	<Copyright>2022 - Sigged</Copyright>
+	<PackageIcon>logo-64.png</PackageIcon>
+	<PackageTags>xamarin; xamarin forms; behavior; TLS; SSL; images; token; invalid certificate</PackageTags>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+	<Description>This small library contains a Xamarin Forms behavior to add to your &amp;lt;Image&amp;gt; elements. 
+It allows you to download images from an insecure HTTPS source when debugging.</Description>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\logo-64.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
