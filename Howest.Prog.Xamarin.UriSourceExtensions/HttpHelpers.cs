@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -11,8 +12,8 @@ namespace Howest.Prog.Xamarin.UriSourceExtensions
         public static async Task<Stream> GetImageStreamAsync(Uri uri, bool ignoreCertificateErrors, string token = null)
         {
             var httpClientHandler = new HttpClientHandler();
-#if DEBUG
-            if (ignoreCertificateErrors)
+
+            if (Debugger.IsAttached && ignoreCertificateErrors)
             {
                 //allow handshaking with untrusted certificates when running a DEBUG assembly
                 httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
@@ -21,7 +22,7 @@ namespace Howest.Prog.Xamarin.UriSourceExtensions
                     return true;
                 };
             }
-#endif
+
             Stream stream = null;
             using (HttpClient httpClient = new HttpClient(httpClientHandler))
             {
