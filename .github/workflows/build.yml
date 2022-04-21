@@ -20,6 +20,6 @@ jobs:
     - name: Add msbuild to PATH
       uses: microsoft/setup-msbuild@v1.1
     - name: Restore packages
-      run: msbuild [sln file] -t:restore -p:RestorePackagesConfig=true
+      run: msbuild Howest.Prog.Xamarin.UriSourceExtensions.sln -t:restore -p:RestorePackagesConfig=true
     - name: Build app for release
       run: msbuild Howest.Prog.Xamarin.UriSourceExtensions\Howest.Prog.Xamarin.UriSourceExtensions.csproj -t:rebuild -verbosity:diag -property:Configuration=Release
