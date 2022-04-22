@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Text;
 using Xamarin.Forms;
 
@@ -108,7 +109,7 @@ namespace Howest.Prog.Xamarin.UriSourceExtensions
                 {
                     var originalUriSource = (UriImageSource)attachedImage.Source;
                     SubscribeEvents(false);
-                    attachedImage.Source = ImageSource.FromStream((cancellation) => HttpHelpers.GetImageStreamAsync(originalUriSource.Uri, IgnoreCertificateErrors, Token));
+                    attachedImage.Source = ImageSource.FromStream(async (cancellation) => new MemoryStream(await HttpHelpers.GetImageBytes(originalUriSource.Uri, IgnoreCertificateErrors, Token)));
                     SubscribeEvents(true);
                 }
 

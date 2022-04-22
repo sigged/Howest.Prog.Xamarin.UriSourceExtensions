@@ -1,10 +1,10 @@
-name: .NET
+name: CI
 
 on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+    branches: 
+     - main
+     - 'feature/**'
 
 jobs:
   build:
@@ -17,9 +17,9 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1.1
+    - name: Restore packages
+      run: msbuild Howest.Prog.Xamarin.UriSourceExtensions.sln -t:restore -p:RestorePackagesConfig=true
+    - name: Build solution
+      run: msbuild Howest.Prog.Xamarin.UriSourceExtensions.sln -t:rebuild -verbosity:diag -property:Configuration=Release

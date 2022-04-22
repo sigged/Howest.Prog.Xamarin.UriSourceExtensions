@@ -9,7 +9,7 @@ namespace Howest.Prog.Xamarin.UriSourceExtensions
 {
     internal class HttpHelpers
     {
-        public static async Task<Stream> GetImageStreamAsync(Uri uri, bool ignoreCertificateErrors, string token = null)
+        public static async Task<byte[]> GetImageBytes(Uri uri, bool ignoreCertificateErrors, string token = null)
         {
             var httpClientHandler = new HttpClientHandler();
 
@@ -23,15 +23,14 @@ namespace Howest.Prog.Xamarin.UriSourceExtensions
                 };
             }
 
-            Stream stream = null;
             using (HttpClient httpClient = new HttpClient(httpClientHandler))
             {
                 if(token != null)
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                stream = await httpClient.GetStreamAsync(uri);
+                var response = await httpClient.GetAsync(uri);
+                return await response.Content.ReadAsByteArrayAsync();
             }
-            return stream;
         }
     }
 }

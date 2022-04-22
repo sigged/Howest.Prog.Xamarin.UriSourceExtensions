@@ -10,7 +10,7 @@ namespace SampleApp.Services
 {
     public class ApiClient
     {
-        private const string baseUrl = "https://192.168.1.152:5001";
+        private const string baseUrl = "https://172.30.138.31:5001";
         private readonly JsonSerializerOptions _jsonSerializerOptions;
 
         public ApiClient()
