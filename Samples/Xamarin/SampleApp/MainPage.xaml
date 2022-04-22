@@ -12,7 +12,7 @@
             <Label Text="Image Source Extension" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
         </Frame>
 
-        <Button Text="🌍 public pepperoni" 
+        <Button Text="🌍 public pita &amp; pepperoni" 
                 Command="{Binding LoadPublicPage}"
                 Margin="10" TextColor="#295300" BackgroundColor="#97D686"
                 />
